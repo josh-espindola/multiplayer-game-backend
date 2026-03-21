@@ -1,4 +1,4 @@
-import { User } from "../userSchemaDB.js";
+import { User } from "./userSchemaDB.js";
 import AppError from "../utils/AppError.js";
 import { hashPassword, comparePassword } from "../utils/hash.js";
 

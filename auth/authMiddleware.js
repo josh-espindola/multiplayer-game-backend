@@ -14,7 +14,7 @@ const authMiddleware = async(req,res,next)=>{
         req.user = isValidToken
         next();
     }catch(err){
-        throw new AppError("Token inválido",401);
+        next(new AppError("Token inválido",401))
     }
 
 }

@@ -7,10 +7,10 @@ const userRegisterService = async ({username, password, email}) => {
     /* Buscar si el usuario ya existe */
     const userAlreadyExists = await User.findOne({ $or :[{ username }, { email }]});
     if(userAlreadyExists) throw new AppError("Este usuario ya ha sido registrado",400);
-
     /* Hashing password */
     const hashedPassword = await hashPassword(password);
     const data = { username, password: hashedPassword, email}
+    /* Creo al usuario */
     const user = await User.create(data);
     return user;
 

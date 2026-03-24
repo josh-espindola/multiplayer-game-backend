@@ -34,14 +34,6 @@ const deleteUserByIdController = asyncHandler(async (req, res, next) => {
     res.status(200).json({ message: "usuario eliminado correctamente" })
 })
 
-
-
-/* 
-const loginController = asyncHandler( async (req,res,next)=>{
-    const {username , password } = req.body;
-    res.status(200).json({ message: "usuario Logeado", username})
-})
- */
 export {
     registerController,
     getAllUsersController,

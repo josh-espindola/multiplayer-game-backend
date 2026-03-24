@@ -14,7 +14,7 @@ const app = express();
 const httpServer = createServer(app) //
 
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: process.env.FRONTEND_URL
 }));
 app.use(express.json());
 app.use("/api/",userRouter);
@@ -36,6 +36,5 @@ dbConnection().then(()=>{
         console.log("Servidor Corriendo");
     })
 })
-
 
 

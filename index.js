@@ -4,10 +4,14 @@ import dotenv from 'dotenv';
 import { userRouter } from './users/userRoutes.js'
 import { authRouter } from './auth/authRouter.js';
 import { dbConnection } from './config/db.js';
+import { initSocket } from './socket/socket.js';
+import { createServer } from 'http';
+
 
 dotenv.config();
 
 const app = express();
+const httpServer = createServer(app) //
 
 app.use(cors({
     origin: "http://localhost:5173"
@@ -25,7 +29,10 @@ app.use((err,req,res,next)=>{
 
 
 dbConnection().then(()=>{
-    app.listen(process.env.PORT, ()=>{
+    //Inicialiación del servidor sobre el server http
+    initSocket(httpServer);
+    
+    httpServer.listen(process.env.PORT, ()=>{
         console.log("Servidor Corriendo");
     })
 })

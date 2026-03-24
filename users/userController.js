@@ -1,7 +1,6 @@
 import { asyncHandler } from '../utils/asyncHandler.js'
 import { deleteUserByIdService, getAllUsersServices, editUserByIdService, getUserByIdService, userRegisterService } from "./userServices.js";
 
-
 const registerController = asyncHandler(async (req, res, next) => {
     const { username, password, email } = req.body;
     const user = await userRegisterService({ username, password, email });

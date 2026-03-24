@@ -32,14 +32,18 @@ const getUserByIdService = async ({id})=>{
 }
 
 const editUserByIdService = async ({ id,password,email}) =>{
-  
+    
+    if(password){
+        const hashedPassw = await hashPassword(password);
+    }
     const userUpdated = await User.findByIdAndUpdate(
         id,
-        { password, email },
+        { password : hashedPassw, email },
         { returnDocument: 'after' }
     )
 
     if(!userUpdated) throw new AppError("No se puede encontrar usuario");
+    
     console.log("Informacion actualizada del usuario",userUpdated.id,userUpdated.username);
     return userUpdated;
 }

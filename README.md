@@ -27,4 +27,3 @@ Servidor WebSocket integrado con Express.
 | `joinMap` | cliente → servidor | unirse a un mapa |
 | `msj` | bidireccional | mensaje al chat global |
 | `msgOnMap` | bidireccional | mensaje al chat del mapa |
-

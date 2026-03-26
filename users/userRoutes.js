@@ -8,7 +8,7 @@ const userRouter = express.Router();
 
 userRouter.get("/users/",authMiddleware,getAllUsersController);
 userRouter.get("/users/:id",getUserByIdController);
-userRouter.post("/register",userValidator,registerController);
+userRouter.post("/auth/register",userValidator,registerController);
 userRouter.patch("/users/:id",editUserByIdController);
 userRouter.delete("/users/:id",deleteUserByIdController);
 

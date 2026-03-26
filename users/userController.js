@@ -4,8 +4,8 @@ import { deleteUserByIdService, getAllUsersServices, editUserByIdService, getUse
 
 const registerController = asyncHandler(async (req, res, next) => {
     const { username, password, email } = req.body;
-    const user = await userRegisterService({ username, password, email });
-    res.status(201).json({ message: "usuario creado", user });
+    const token = await userRegisterService({ username, password, email });
+    res.status(201).json({ message: "usuario creado", token });
 
 })
 

@@ -28,6 +28,8 @@ app.use((err,req,res,next)=>{
 })
 
 
+/* Arranque del servidor  */
+
 dbConnection().then(()=>{
     //Inicialiación del servidor sobre el server http
     initSocket(httpServer);

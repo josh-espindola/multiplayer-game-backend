@@ -1,6 +1,7 @@
 import { User } from "./userSchemaDB.js";
 import AppError from "../utils/AppError.js";
 import { hashPassword, comparePassword } from "../utils/hash.js";
+import { generateToken } from "../utils/jwt.js";
 
 
 const userRegisterService = async ({username, password, email}) => {
@@ -9,10 +10,18 @@ const userRegisterService = async ({username, password, email}) => {
     if(userAlreadyExists) throw new AppError("Este usuario ya ha sido registrado",400);
     /* Hashing password */
     const hashedPassword = await hashPassword(password);
-    const data = { username, password: hashedPassword, email}
     /* Creo al usuario */
-    const user = await User.create(data);
-    return user;
+    const user = await User.create({
+        username,
+        password: hashedPassword,
+        email
+    });
+    const payload = {
+        id: user._id,
+        username: user.username
+    }
+    const token = generateToken(payload);
+    return token;
 
 }
 
